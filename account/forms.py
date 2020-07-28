@@ -69,3 +69,4 @@ class UserChangeForm(forms.ModelForm):
         # field does not have access to the initial value
         return self.initial["password"]
 
+

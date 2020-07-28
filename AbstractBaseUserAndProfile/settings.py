@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'userProfile'
     
-    #'crispy_forms',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -146,4 +146,4 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'statics')
 
-#CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
