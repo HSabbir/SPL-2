@@ -1,8 +1,16 @@
 from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.forms import AuthenticationForm
+from django.forms.widgets import PasswordInput, TextInput
 
 from .models import Account
+
+
+
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(widget=TextInput(attrs={'class':'validate','placeholder': 'Email'}))
+    password = forms.CharField(widget=PasswordInput(attrs={'placeholder':'Password'}))
 
 
 class RegistrationForm(forms.ModelForm):

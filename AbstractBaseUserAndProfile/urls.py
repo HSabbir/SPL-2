@@ -18,14 +18,16 @@ from django.urls import path,include
 from django.contrib.auth import views as auth_views
 
 from account.views import RegistrationView, ProfileView
+from account.forms import CustomLoginForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('account.urls')),
+    path('userprofile',include('userProfile.urls')),
 
     path('register/', RegistrationView.as_view(), name='register'),
     #path('profile/', ProfileView.as_view(), name='profile'),
-    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('accounts/login/', auth_views.LoginView.as_view(authentication_form=CustomLoginForm), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),

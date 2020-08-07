@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
 import datetime
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # user profile
@@ -12,8 +14,10 @@ class Profile(models.Model):
         ('MIT', 'MIT'),
         ('PGDIT', 'PGDIT'),
     )
+
+    #this is my user profile model..i want a user will create model after login...i use model form before ...but need to specify user also login
     profile_of = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
-    session = models.CharField(max_length=20, blank=False, null=False)
+    session = models.CharField(max_length=20, blank=False, null=False )
     batch = models.IntegerField()  # batch = models.IntegerField(blank=False, null=False)
     iit_program = models.CharField(blank=True, choices=IIT_PROGRAM, max_length=10)
     college = models.CharField(max_length=50)
@@ -36,6 +40,7 @@ class Profile(models.Model):
         self.slug = slugify(self.title)
 
         return super(Profile, self).save(*args, **kwargs)'''
+
 
 class Domain(models.Model):
     domain = models.CharField(max_length=30)

@@ -29,8 +29,11 @@
             <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
             {% csrf_token %}
 
-           {{ form.as_p }}
-             <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
+            <div class="form-group">{% render_field field type="email" class="form-control" placeholder="" aria-describedby="field.label|safe" %}</div>
+
+           <div class="form-group">{% render_field field type="password" class="form-control" placeholder="" aria-describedby="field.label|safe" %}</div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
+
             <div class="form-group"><a class="btn btn-primary active btn-block" role="button" href="logout.html">Create an account?</a></div><a class="forgot" href="logout.html">Forgot your email or password? or&nbsp; &nbsp; &nbsp; Change your email or password?</a>
         </form>
     </div>
