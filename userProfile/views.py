@@ -12,7 +12,7 @@ def userProfileview(request):
         profile_form = UserProfile(data=request.POST)
         if profile_form.is_valid():
             instance = profile_form.save(commit=False)  # this is the trick.
-            instance.profile_of = request.user  # and this to get the currently logged in user
+            instance.user = request.user  # and this to get the currently logged in user
             instance.save()  # to commit the new info
 
             return HttpResponseRedirect('/')
