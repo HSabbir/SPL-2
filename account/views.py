@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
@@ -31,7 +32,7 @@ class RegistrationView(CreateView):
             success_url += '?next={}'.format(next_url)
 
         return success_url
-
+@login_required(login_url= '/accounts/login/')
 def home(request):
     return render(request, 'index.html')
 

@@ -23,7 +23,7 @@ from account.forms import CustomLoginForm
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('account.urls')),
-    path('userprofile',include('userProfile.urls')),
+    path('userprofile/',include('userProfile.urls')),
 
     path('register/', RegistrationView.as_view(), name='register'),
     #path('profile/', ProfileView.as_view(), name='profile'),
