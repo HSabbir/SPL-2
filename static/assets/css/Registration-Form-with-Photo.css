@@ -82,4 +82,6 @@
   opacity: 0.9;
   text-decoration: none;
 }
-
+.form-container label{
+  display: none;
+}

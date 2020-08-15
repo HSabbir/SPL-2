@@ -2,23 +2,37 @@ from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.forms import AuthenticationForm
-from django.forms.widgets import PasswordInput, TextInput
+from django.forms.widgets import PasswordInput, TextInput, EmailInput
 
 from .models import Account
+from crispy_forms.helper import FormHelper
 
 
 
 class CustomLoginForm(AuthenticationForm):
-    username = forms.CharField(widget=TextInput(attrs={'class':'validate','placeholder': 'Email'}))
-    password = forms.CharField(widget=PasswordInput(attrs={'placeholder':'Password'}))
+    username = forms.CharField(widget=EmailInput(attrs={'class': 'validate', 'placeholder': 'Email'}))
+    password = forms.CharField(widget=PasswordInput(attrs={'placeholder': 'Password'}))
+    
+    '''email = forms.CharField(widget=TextInput(attrs={'class':'validate','placeholder': 'Email'}))
+    password = forms.CharField(widget=PasswordInput(attrs={'placeholder':'Password'}))'''
 
 
 class RegistrationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    '''def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_show_labels = False'''
+
+    name = forms.CharField(widget=forms.TextInput(attrs={ 'placeholder': 'Name'}), label='')
+    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'validate', 'placeholder': 'Email'}), label='')
+    #email = forms.CharField(widget=EmailInput(attrs={'class': 'validate', 'placeholder': 'Email'},label=''))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={ 'placeholder': 'Password'}), label='')
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}), label='')
+
+
     class Meta:
         model = Account
-        fields = ('email', 'name', 'password1', 'password2')
+        fields = ('name', 'email', 'password1', 'password2')
 
     def clean_password2(self):
         # Check that the two password entries match
