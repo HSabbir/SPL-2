@@ -9,17 +9,17 @@ class AccountAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ('email', 'name','is_staff', 'is_teacher',  'is_superuser')
+    list_display = ('email', 'name','is_staff', 'email_confirmed', 'is_approved','is_teacher',  'is_superuser')
     list_filter = ('is_superuser',)
 
     fieldsets = (
-        (None, {'fields': ('email', 'is_staff', 'is_teacher', 'is_superuser', 'password')}),
+        (None, {'fields': ('email', 'is_staff', 'is_teacher', 'email_confirmed', 'is_approved', 'is_superuser', 'password')}),
         ('Personal info', {'fields': ('name',)}),
         ('Groups', {'fields': ('groups',)}),
         ('Permissions', {'fields': ('user_permissions',)}),
     )
     add_fieldsets = (
-        (None, {'fields': ('email', 'is_staff', 'is_teacher', 'is_superuser', 'password1', 'password2')}),
+        (None, {'fields': ('email', 'is_staff', 'is_teacher', 'email_confirmed', 'is_approved','is_superuser', 'password1', 'password2')}),
         ('Personal info', {'fields': ('name',)}),
         ('Groups', {'fields': ('groups',)}),
         ('Permissions', {'fields': ('user_permissions',)}),

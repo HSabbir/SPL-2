@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Create Profile</title>
+
 </head>
 <body>
-    {% block content %}
-    <form method="post">
+    <script>
+        alert('You have not create profile yet')
+    </script>
+    <h1>Create Profile</h1>
+    <form method="post" id="profile" >
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit">
     </form>
-    {% endblock %}
+
 </body>
 </html>
