@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('account.urls')),
     path('userprofile/',include('userProfile.urls')),
+    path('project/' , include('project.urls')),
 
 
     #path('profile/', ProfileView.as_view(), name='profile'),

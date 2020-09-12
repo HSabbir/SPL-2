@@ -19,7 +19,7 @@
                                 <a
                                     class="dropdown-item" role="presentation" href="preUniversity.html" style="color: rgb(255,255,255);background-color: #343a40;">Previous University</a><a class="dropdown-item" role="presentation" href="preCollege.html" style="color: rgb(255,255,255);background-color: #343a40;">Previous College</a></div>
                         </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="login.html"><strong>Logout</strong></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'logout' %}"><strong>Logout</strong></a></li>
                     </ul>
             </div>
             </div>
@@ -129,6 +129,7 @@
                 <div class="avatar">
                     <h1 style="font-size: 35px;">Project</h1>
                     <hr>
+                    <a href="{% url 'create_project' %}" ><button type="button" class="btn btn-primary">Add Project</button></a>
                     <div class="row">
                         <div class="col">
                             <div class="row">

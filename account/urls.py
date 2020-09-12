@@ -4,7 +4,7 @@ from . import views
 from .views import registrationView
 
 urlpatterns=[
-    path('', views.home, name='message'),
+    path('', views.home, name='home'),
     path('register/', registrationView, name='register'),
     path('activate/<uidb64>/<token>/',views.activate, name='activate'),
 

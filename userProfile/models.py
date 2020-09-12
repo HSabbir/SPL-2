@@ -14,7 +14,7 @@ class Profile(models.Model):
     )
 
     #this is my user profile model..i want a user will create model after login...i use model form before ...but need to specify user also login
-    profile_of = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
+    profile_of = models.OneToOneField(settings.AUTH_USER_MODEL,null=True,on_delete=models.CASCADE)
     session = models.CharField(max_length=20, blank=False, null=True )
     batch = models.IntegerField(null=True)  # batch = models.IntegerField(blank=False, null=False)
     iit_program = models.CharField(blank=True, choices=IIT_PROGRAM, max_length=10)

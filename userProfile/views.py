@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .models import Profile
 
-@login_required(login_url= '/accounts/login/')
+@login_required(login_url= 'login')
 def userProfileview(request):
     user = request.user
     try:
