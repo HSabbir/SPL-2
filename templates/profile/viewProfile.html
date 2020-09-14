@@ -130,34 +130,25 @@
                     <h1 style="font-size: 35px;">Project</h1>
                     <hr>
                     <a href="{% url 'create_project' %}" ><button type="button" class="btn btn-primary">Add Project</button></a>
-                    <div class="row">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col"><label class="col-form-label"><strong>Project No</strong></label></div>
-                                <div class="col"><label class="col-form-label"><strong>Category</strong></label></div>
-                                <div class="col"><label class="col-form-label"><strong>Title</strong></label></div>
-                                <div class="col"><label class="col-form-label"><strong>Tools &amp; Technology</strong></label></div>
-                                <div class="col"><label class="col-form-label"><strong>Domain</strong></label></div>
-                                <div class="col"><label class="col-form-label"><strong>Environment</strong></label></div>
-                            </div>
-                            <div class="row">
-                                <div class="col"><label class="col-form-label">1</label></div>
-                                <div class="col"><label class="col-form-label">Academic (SPL-2)</label></div>
-                                <div class="col"><label class="col-form-label">Info Portal</label></div>
-                                <div class="col"><label class="col-form-label">Bootstrap, Django, MySQL</label></div>
-                                <div class="col"><label class="col-form-label">Web</label></div>
-                                <div class="col"><label class="col-form-label">Web</label></div>
-                            </div>
-                            <div class="row">
-                                <div class="col"><label class="col-form-label">2</label></div>
-                                <div class="col"><label class="col-form-label">Personal</label></div>
-                                <div class="col"><label class="col-form-label">Teen Guti</label></div>
-                                <div class="col"><label class="col-form-label">JavaFX, Eclipse</label></div>
-                                <div class="col"><label class="col-form-label">Janina</label></div>
-                                <div class="col"><label class="col-form-label">Janina</label></div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="projects-clean">
+        <div class="container">
+
+            <!-- End: Intro -->
+            <!-- Start: Projects -->
+            <div class="row projects">
+            {% for project in projects %}
+
+                <div class="col-sm-6 col-lg-4 item"><img class="img-fluid" src="{{project.project_photo.url}}" alt="image not found" height="300" width="400">
+                    <h3 class="name">{{ project.project_title }}</h3><br>
+                    {% for d in project.domain.all %}
+                        <p class="description">{{ d }}</p>
+                    {% endfor %}
+                </div>
+
+
+            {% endfor %}
+            </div>
+        </div>
                 </div>
             </div>
             <div class="jumbotron text-center" style="margin: 70px 90px;height: 60vh;background-color: rgba(233,236,239,0.8);color: rgb(25,75,100);font-size: 25px;padding: 40px;">
