@@ -1,10 +1,10 @@
 from django import forms
 
-from .models import Project
+from .models import CreateProject
 
 class createProjectForm(forms.ModelForm):
 
     class Meta:
 
-        model = Project
-        fields = ('project_title', 'domain', 'environment', 'tools_and_technology')
+        model = CreateProject
+        fields = ('project_title', 'domain', 'environment', 'tools_and_technology','project_photo')

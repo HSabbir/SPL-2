@@ -5,6 +5,7 @@ from .forms import UserProfile
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .models import Profile
+from project.views import viewProject
 
 @login_required(login_url= 'login')
 def userProfileview(request):
@@ -14,11 +15,11 @@ def userProfileview(request):
         print(existProfile)
         if existProfile:
             user_info = Account.get_full_name(request.user)
-            print(user_info)
             profile_info = Profile.objects.get(profile_of=user)
-            print(profile_info.photo)
 
-            return render(request, 'profile/viewProfile.html',{'info': profile_info,'user':user_info})
+            project = viewProject(request)
+
+            return render(request, 'profile/viewProfile.html',{'info': profile_info,'user':user_info,'projects':project})
 
     except Profile.DoesNotExist:
         if request.method == 'POST':

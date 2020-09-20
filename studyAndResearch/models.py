@@ -10,7 +10,7 @@ class Country(models.Model):
         return self.country
 
 class HigherStudiesUniversity(models.Model):
-
+    country = models.ForeignKey(Country,on_delete=models.CASCADE)
     university_name = models.CharField(max_length=150)
 
     def __str__(self):
@@ -19,8 +19,7 @@ class HigherStudiesUniversity(models.Model):
 
 
 class HigherStudies(models.Model):
-    university_name = models.ForeignKey( HigherStudiesUniversity,on_delete = models.CASCADE )
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    university = models.ForeignKey( HigherStudiesUniversity,on_delete = models.CASCADE )
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     study_domain = models.ManyToManyField(Domain)
 
@@ -28,3 +27,6 @@ class Research(models.Model):
     research_title = models.CharField(max_length=100)
     domain = models.ManyToManyField(Domain)
     profile = models.ManyToManyField(Profile)
+
+    def __str__(self):
+        return self.research_title
