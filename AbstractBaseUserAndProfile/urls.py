@@ -27,7 +27,7 @@ urlpatterns = [
     path('',include('account.urls')),
     path('userprofile/',include('userProfile.urls')),
     path('project/' , include('project.urls')),
-    #path('study_and_research/',include('studyAndResearch.urls')),
+    path('study_and_research/',include('study_research.urls')),
 
 
     #path('profile/', ProfileView.as_view(), name='profile'),

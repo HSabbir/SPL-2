@@ -25,7 +25,7 @@ def createProject(request):
 
             return HttpResponseRedirect(redirect_to='/userprofile/')
     form = createProjectForm
-    context = {'form': form}
+    context = {'form': form,'title':'Create Project'}
 
     return render(request, 'project/create_project.html', context)
 

@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .models import Profile
 from project.views import viewProject
+from study_research.views import viewResearch,viewHigherStudies
 
 @login_required(login_url= 'login')
 def userProfileview(request):
@@ -18,8 +19,12 @@ def userProfileview(request):
             profile_info = Profile.objects.get(profile_of=user)
 
             project = viewProject(request)
+            research = viewResearch(request)
+            higher_studies = viewHigherStudies(request)
 
-            return render(request, 'profile/viewProfile.html',{'info': profile_info,'user':user_info,'projects':project})
+            context = {'info': profile_info,'user':user_info,'projects':project, 'researchs':research, 'higher_studies':higher_studies}
+
+            return render(request, 'profile/viewProfile.html',context)
 
     except Profile.DoesNotExist:
         if request.method == 'POST':
