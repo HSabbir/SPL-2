@@ -1,6 +1,7 @@
 from django.db import models
 from userProfile.models import Profile
 from workingSkills.models import Domain
+from account.models import Account
 
 
 class Country(models.Model):
@@ -9,8 +10,8 @@ class Country(models.Model):
     def __str__(self):
         return self.country
 
-class HigherStudiesUniversity(models.Model):
-    country = models.ForeignKey(Country,on_delete=models.CASCADE)
+class HigherStudiesUniversityN(models.Model):
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
     university_name = models.CharField(max_length=150)
 
     def __str__(self):
@@ -18,15 +19,15 @@ class HigherStudiesUniversity(models.Model):
 
 
 
-class HigherStudies(models.Model):
-    university = models.ForeignKey( HigherStudiesUniversity,on_delete = models.CASCADE )
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+class HigherStudiesN(models.Model):
+    university = models.ForeignKey(HigherStudiesUniversityN, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Account, on_delete=models.CASCADE)
     study_domain = models.ManyToManyField(Domain)
 
-class Research(models.Model):
+class ResearchNew(models.Model):
     research_title = models.CharField(max_length=100)
     domain = models.ManyToManyField(Domain)
-    profile = models.ManyToManyField(Profile)
+    profile = models.ManyToManyField(Account)
 
     def __str__(self):
         return self.research_title

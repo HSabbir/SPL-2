@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'professionalInfo',
     'project',
     'workingSkills',
-    'studyAndResearch',
+    'study_research',
 
     'crispy_forms',
     
