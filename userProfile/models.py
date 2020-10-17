@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from account.models import Account
 
 # user profile
 class Profile(models.Model):
@@ -42,6 +42,29 @@ class Contact(models.Model):
     github = models.CharField(max_length=200, null=True, blank=True)
     phone = models.CharField(max_length=20, null=True, blank=True)
     linkedIn = models.CharField(max_length=100, null=True, blank=True)
+
+class Facebook(models.Model):
+    fb_id = models.CharField(max_length=200)
+    profile = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.fb_id
+
+class Phone(models.Model):
+    phone_id = models.CharField(max_length=20)
+    profile = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+class Github(models.Model):
+    github_link = models.CharField(max_length=100)
+    profile = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+class LinkedIn(models.Model):
+    linked_in = models.CharField(max_length=100)
+    profile = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+class AdditionalMail(models.Model):
+    mail_id = models.CharField(max_length=50)
+    profile = models.ForeignKey(Account, on_delete=models.CASCADE)
 
 
 

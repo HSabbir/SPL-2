@@ -28,6 +28,7 @@ urlpatterns = [
     path('userprofile/',include('userProfile.urls')),
     path('project/' , include('project.urls')),
     path('study_and_research/',include('study_research.urls')),
+    path('professional_info/',include('professionalInfo.urls')),
 
 
     #path('profile/', ProfileView.as_view(), name='profile'),

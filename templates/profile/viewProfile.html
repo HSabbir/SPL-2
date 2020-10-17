@@ -2,28 +2,7 @@
 {% load static %}
 {% block content %}
     <section style="width: 100%;height: 700vh;background-position: center;background-repeat: no-repeat;background-size: cover;color: rgb(255,255,255);background-image: url(&quot;assets/img/pic2.jpg&quot;);">
-        <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark text-left shadow-none" style="background-color: rgba(255,255,255,0.66);">
-            <div class="container-fluid"><a class="navbar-brand" href="#"><strong><em>IIT Info Portal</em></strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div
-                    class="collapse navbar-collapse" id="navcol-2">
-                    <ul class="nav navbar-nav mx-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" href="{% url 'home' %}"><strong>Home</strong></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'createprofile' %}"><strong>Profile</strong></a></li>
-                    </ul>
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#"><strong>Search</strong><input class="bg-light border-info" type="search"></a></li>
-                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Dropdown </a>
-                            <div class="dropdown-menu" role="menu" style="color: rgb(255,255,255);background-color: #F1ABB9;"><a class="dropdown-item" role="presentation" href="prog&amp;Batch.html" style="color: rgb(255,255,255);background-color: #343a40;">Programme &amp; Batch</a><a class="dropdown-item" role="presentation" href="organization.html"
-                                    style="color: rgb(255,255,255);background-color: #343a40;">Organization</a><a class="dropdown-item" role="presentation" href="project.html" style="color: rgb(255,255,255);background-color: #343a40;">Project</a><a class="dropdown-item"
-                                    role="presentation" href="research.html" style="color: rgb(255,255,255);background-color: #343a40;">Research</a><a class="dropdown-item" role="presentation" href="higherStudies.html" style="color: rgb(255,255,255);background-color: #343a40;">Higher Studies</a>
-                                <a
-                                    class="dropdown-item" role="presentation" href="preUniversity.html" style="color: rgb(255,255,255);background-color: #343a40;">Previous University</a><a class="dropdown-item" role="presentation" href="preCollege.html" style="color: rgb(255,255,255);background-color: #343a40;">Previous College</a></div>
-                        </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'logout' %}"><strong>Logout</strong></a></li>
-                    </ul>
-            </div>
-            </div>
-        </nav>
+
         <div class="text-left" style="height: 700vh;width: 100%;">
             <div class="jumbotron text-center" style="margin: 70px 90px;height: 40vh;background-color: rgba(233,236,239,0.9);padding: 40px;">
                 <h1 style="color: rgb(60,120,180);font-size: 90px;"><strong>P&nbsp; R&nbsp; O&nbsp; F&nbsp; I&nbsp; L&nbsp; E</strong><br></h1>
@@ -40,10 +19,10 @@
                                 <div class="col"><label class="col-form-label" style="color: rgb(60,120,180);font-size: 35px;"><strong>{{ user }}</strong></label></div>
                             </div>
                             <div class="row">
-                                <div class="col"><label class="col-form-label" style="color: rgb(25,75,100);font-size: 25px;"><strong>Software Engineer</strong></label></div>
+                                <div class="col"><label class="col-form-label" style="color: rgb(25,75,100);font-size: 25px;"><strong>{{ professions.designation }}</strong></label></div>
                             </div>
                             <div class="row">
-                                <div class="col"><label class="col-form-label" style="color: rgb(25,75,100);font-size: 25px;"><strong>Brain Station 23</strong></label></div>
+                                <div class="col"><label class="col-form-label" style="color: rgb(25,75,100);font-size: 25px;"><strong>{{ professions.organization.organization_name}}</strong></label></div>
                             </div>
                             <div class="row">
                                 <div class="col"><label class="col-form-label" style="color: rgb(0,0,0);font-size: 25px;"><br></label></div>
@@ -91,39 +70,32 @@
             <div class="jumbotron text-center" style="margin: 70px 90px;height: 100vh;background-color: rgba(233,236,239,0.8);color: rgb(25,75,100);font-size: 25px;padding: 40px;">
                 <div class="avatar">
                     <h1 style="font-size: 35px;">Professional Career Information</h1>
+                    <a href="{% url 'add_professional_info' %}" ><button type="button" class="btn btn-primary">Add Professional Info</button></a>
                     <hr>
-                    <div class="row">
-                        <div class="col text-right">
+
+
+                    {% for profession in professions %}
+                        <div class="row">
+                        <div class="col text-left">
+
                             <div class="row">
-                                <div class="col"><label class="col-form-label">Currently Working at : Brain Station 23</label></div>
+                                <div class="col"><label class="col-form-label">Organization Name : {{ profession.organization.organization_name}}</label></div>
                             </div>
                             <div class="row">
-                                <div class="col"><label class="col-form-label">Organization Type : Software Company</label></div>
+                                <div class="col"><label class="col-form-label">Organization Type : {{ profession.organization.organization_type}}</label></div>
                             </div>
                             <div class="row">
-                                <div class="col"><label class="col-form-label">Designation : Software Engineer</label></div>
+                                <div class="col"><label class="col-form-label">Designation : {{ profession.designation}}</label></div>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col text-left">
-                                    <div class="row">
-                                        <div class="col"><label class="col-form-label"><span style="text-decoration: underline;">Working Organization</span></label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <ol>
-                                                <li>Brain Station 23</li>
-                                                <li>Pathao</li>
-                                                <li>Grameenphone</li>
-                                                <li>Orion</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
+                            <br>
+
+
                     </div>
-                </div>
+                        </div>
+                    {% endfor %}
+
             </div>
         <!-- End: Intro -->
             <!-- Start: Projects -->
@@ -221,20 +193,16 @@
             <div class="jumbotron text-center" style="margin: 70px 90px;height: 70vh;background-color: rgba(233,236,239,0.8);color: rgb(25,75,100);font-size: 25px;padding: 40px;">
                 <div class="avatar">
                     <h1 style="font-size: 35px;">Contact Information</h1>
-                    <hr>
-                    <div class="row">
-                        <div class="col"><label class="col-form-label">Contact No: 01689414954<br></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><label class="col-form-label">Additional Email ID: almahmudshezan@gmail.com<br></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><label class="col-form-label">Github Link: github.com/shezan7<br></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><label class="col-form-label">Facebook ID Link: facebook.com/shezan.almahmud.92<br></label></div>
-                    </div>
+
+                        <div class="col"><a href="#" class="fa fa-phone"></a>  : {{ phone.phone_id }}</div>
+                        <div class="col"><a href="#" class="fa fa-envelope"></a> : {{ a_mail.mail_id }}</div>
                 </div>
+                        <a href="{{ facebook }}" class="fa fa-facebook"></a>
+                        <a href="{{ linkedin.linked_in }}" class="fa fa-linkedin"></a>
+                        <a href="{{ github.github_link }}" class="fa fa-github"></a>
+
+
+
             </div>
         </div>
     </section>

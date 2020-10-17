@@ -1,5 +1,5 @@
 from django.db import models
-from userProfile.models import Profile
+from account.models import Account
 
 class Organization(models.Model):
     organization_name = models.CharField(max_length=40)
@@ -12,4 +12,4 @@ class ProfessionalInfo(models.Model):
     designation = models.CharField(max_length=40, blank=True, null=True)
     organization = models.ForeignKey(Organization,on_delete=models.PROTECT)
     date_join = models.DateField()
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Account, on_delete=models.CASCADE)

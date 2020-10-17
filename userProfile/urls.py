@@ -4,6 +4,6 @@ from project.views import viewProject
 
 urlpatterns = [
     path('', views.userProfileview, name='createprofile'),
-
+    path('people/',views.viewPeople , name='view_all_people'),
 
 ]

@@ -47,3 +47,25 @@
 
 
 
+<div class="team-grid">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">People </h2>
+            </div>
+            <div class="row people">
+                {% for prf in profile %}
+                <div class="col-md-4 col-lg-3 item">
+                    {% if prf.photo %}
+                    <div class="box" style="background-image:url({{ prf.photo.url }})">
+
+                    {% endif  %}
+
+                        <h3 class="name">{{ prf.profile_of.name }}</h3>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
