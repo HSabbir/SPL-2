@@ -6,10 +6,9 @@ from .forms import UserProfile
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .models import Profile
-from project.views import viewProject
-from study_research.views import viewResearch,viewHigherStudies
-from professionalInfo.views import viewProfessionalInfo
-from .contactInfoview import *
+
+from .show_details_profile import *
+
 
 @login_required(login_url= 'login')
 def userProfileview(request):
@@ -17,40 +16,8 @@ def userProfileview(request):
     try:
         existProfile = Profile.objects.get(profile_of=user)
         if existProfile:
-
-            #context = showProfile(request,user)
-
-            user_info = existProfile.profile_of.name
-            profile_info = Profile.objects.get(profile_of=user)
-
-            profession = viewProfessionalInfo(request)
-            project = viewProject(request)
-            research = viewResearch(request)
-            higher_studies = viewHigherStudies(request)
-
-
-            facebook = viewFacebook(request)
-            phone = viewPhone(request)
-            a_mail = viewA_mail(request)
-            github = viewGithub(request)
-            linkedin = viewLinkedIn(request)
-
-            q = showProfile(request,user)
-            print(q)
-
-            context = {'info': profile_info,
-                       'user':user_info ,
-                       'projects':project,
-                       'researchs':research,
-                       'professions':profession,
-                        'facebook':facebook,
-                       'phone':phone,
-                       'a_mail':a_mail,
-                       'github':github,
-                       'linkedin':linkedin,
-                       'higher_studies':higher_studies,
-                       'flag':True
-                       }
+            print(type(user))
+            context = showProfile(user.id)
 
             return render(request, 'profile/viewProfile.html',context)
 
@@ -71,47 +38,15 @@ def userProfileview(request):
         return render(request, 'profile/userprofile.html', context)
 
 
-@login_required(login_url= 'login')
-def showProfile(request,user):
-    user_info = Account.get_full_name(user)
-    profile_info = Profile.objects.get(profile_of=user)
-
-    profession = viewProfessionalInfo(request)
-    return profession
-    '''project = viewProject(user)
-    research = viewResearch(user)
-    higher_studies = viewHigherStudies(user)
-
-    facebook = viewFacebook(user)
-    phone = viewPhone(user)
-    a_mail = viewA_mail(user)
-    github = viewGithub(user)
-    linkedin = viewLinkedIn(user)
-
-    context = {'info': profile_info,
-               'user': user_info.name,
-               'projects': project,
-               'researchs': research,
-               'professions': profession,
-               'facebook': facebook,
-               'phone': phone,
-               'a_mail': a_mail,
-               'github': github,
-               'linkedin': linkedin,
-               'higher_studies': higher_studies,
-               'flag': True
-               }
-
-    return context'''
-
-
 def viewPeople(request):
-
-    try:
-        profile = Profile.objects.all().select_related('profile_of')
+        profile = getAllPeople()
         return render(request, 'show all/show_people.html', {'profile':profile})
-    except Profile.DoesNotExist:
-        return "No People"
+
+def profileDetails(request, id):
+
+    context = showProfile(id)
+
+    return render(request, 'show all/show_profile.html', context)
 
 '''def my_custom_sql():
     with connection.cursor() as cursor:

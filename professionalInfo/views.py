@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .models import ProfessionalInfo
 from account.models import Account
 from .forms import CreateProfessionalInfo
+from .get_info_from_db import *
 
 
 @login_required(login_url= 'login')
@@ -33,14 +34,11 @@ def createProfessionalInfo(request):
 def viewProfessionalInfo(request):
     try:
         user = request.user
-        professional_info = ProfessionalInfo.objects.filter(profile=user)
-        professional_info = professional_info.order_by('date_join').reverse()
+        professional_info = ProfessionalInfo.objects.filter(profile=user).order_by('date_join').reverse()
 
         return professional_info
 
-
     except ProfessionalInfo.DoesNotExist:
         return 'You Have No Project'
-
 
 

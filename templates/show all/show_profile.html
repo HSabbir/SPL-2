@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="text-left" style="height: 700vh;width: 100%;">
+        <div class="jumbotron text-center" style="margin: 70px 90px;height: 40vh;background-color: rgba(233,236,239,0.9);padding: 40px;">
+            <h1 style="color: rgb(60,120,180);font-size: 90px;"><strong>P&nbsp; R&nbsp; O&nbsp; F&nbsp; I&nbsp; L&nbsp; E</strong><br></h1>
+        </div>
+        <div class="jumbotron text-center" style="margin: 70px 90px;height: 80vh;background-color: rgba(233,236,239,0.8);color: rgb(25,75,100);padding: 40px;">
+            <div class="avatar">
+                <div class="row">
+                    <div class="col"><img src="{{info.photo.url}}" alt="image not found" height="500" width="700"></div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col"><label class="col-form-label" style="color: rgb(60,120,180);font-size: 35px;"><br></label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label" style="color: rgb(60,120,180);font-size: 35px;"><strong>{{ user }}</strong></label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label" style="color: rgb(25,75,100);font-size: 25px;"><strong>{{ professions.designation }}</strong></label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label" style="color: rgb(25,75,100);font-size: 25px;"><strong>{{ professions.organization.organization_name}}</strong></label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label" style="color: rgb(0,0,0);font-size: 25px;"><br></label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><a class="btn btn-primary btn-lg" role="button" href="profile.html">Edit Profile</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron text-center" style="margin: 70px 90px;height: 90vh;background-color: rgba(233,236,239,0.8);color: rgb(25,75,100);font-size: 25px;padding: 40px;">
+            <div class="avatar">
+                <h1 style="font-size: 35px;">Personal Information</h1>
+                <hr>
+                <div class="row">
+                    <div class="col text-left">
+                        <div class="row">
+                            <div class="col"><label class="col-form-label">Name : {{ user }}</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label">Programme : {{ info.iit_program }}</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label">Batch : {{ info.batch }}</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label">Previous College : {{ info.college }}</label></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col"><label class="col-form-label">Graduate University : {{ info.graduate_university }}</label></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col"><label class="col-form-label">Graduate Depertment : {{ info.graduate_department }}</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label">Skillset: Gorib developer, Noob coder</label></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron text-center" style="margin: 70px 90px;height: 100vh;background-color: rgba(233,236,239,0.8);color: rgb(25,75,100);font-size: 25px;padding: 40px;">
+            <div class="avatar">
+                <h1 style="font-size: 35px;">Professional Career Information</h1>
+                <hr>
+
+
+                {% for profession in professions %}
+                    <div class="row">
+                        <div class="col text-left">
+
+                            <div class="row">
+                                <div class="col"><label class="col-form-label">Organization Name : {{ profession.organization.organization_name}}</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><label class="col-form-label">Organization Type : {{ profession.organization.organization_type}}</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><label class="col-form-label">Designation : {{ profession.designation}}</label></div>
+                            </div>
+
+
+                            <br>
+
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <!-- End: Intro -->
+            <!-- Start: Projects -->
+
+            <div class="jumbotron text-center" style="margin: 70px 90px;height: 90vh;background-color: rgba(233,236,239,0.8);color: rgb(25,75,100);font-size: 25px;padding: 40px;">
+                <div class="avatar">
+                    <h1 style="font-size: 35px;">Project</h1>
+                    <hr>
+
+                    <div class="projects-clean">
+                        <div class="container">
+
+
+                            <div class="row projects">
+                                {% for project in projects %}
+
+                                    <div class="col-sm-6 col-lg-4 item"><img class="img-fluid" src="{{project.project_photo.url}}" alt="image not found" height="300" width="400">
+                                        <h3 class="name">{{ project.project_title }}</h3><br>
+                                        {% for d in project.domain.all %}
+                                            <p class="description">{{ d }}</p>
+                                        {% endfor %}
+                                    </div>
+
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start: Research-->
+
+                <div class="jumbotron text-center" style="margin: 70px 90px;height: 60vh;background-color: rgba(233,236,239,0.8);color: rgb(25,75,100);font-size: 25px;padding: 40px;">
+                    <div class="avatar">
+                        <h1 style="font-size: 35px;">Research</h1>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+
+                                    <div class="col"><label class="col-form-label"><strong>Title</strong></label></div>
+                                    <div class="col"><label class="col-form-label"><strong>Domain</strong></label></div>
+                                </div>
+                                {% for research in researchs %}
+                                    <div class="row">
+
+                                        <div class="col"><label class="col-form-label">{{ research.research_title }}</label></div>
+                                        <div class="col">
+                                            <label class="col-form-label">
+                                                {% for d in research.domain.all %}
+                                                    <p class="description">{{ d }}</p>
+                                                {% endfor %}
+                                            </label>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="jumbotron text-center" style="margin: 70px 90px;height: 60vh;background-color: rgba(233,236,239,0.8);color: rgb(25,75,100);font-size: 25px;padding: 40px;">
+                    <div class="avatar">
+                        <h1 style="font-size: 35px;">Higher Studies</h1>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+
+                                    <div class="col"><label class="col-form-label"><strong>Country</strong></label></div>
+                                    <div class="col"><label class="col-form-label"><strong>University Name</strong></label></div>
+                                    <div class="col"><label class="col-form-label"><strong>Domain</strong></label></div>
+                                </div>
+                                {% for higher_study in higher_studies %}
+                                    <div class="row">
+
+                                        <div class="col"><label class="col-form-label">{{ higher_study.university.country }}</label></div>
+                                        <div class="col"><label class="col-form-label">{{ higher_study.university.university_name }}</label></div>
+                                        <div class="col">
+                                            <label class="col-form-label">
+                                                {% for d in higher_study.study_domain.all %}
+                                                    <p class="description">{{ d }}</p>
+                                                {% endfor %}
+                                            </label>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="jumbotron text-center" style="margin: 70px 90px;height: 70vh;background-color: rgba(233,236,239,0.8);color: rgb(25,75,100);font-size: 25px;padding: 40px;">
+                        <div class="avatar">
+                            <h1 style="font-size: 35px;">Contact Information</h1>
+
+                            <div class="col"><a href="#" class="fa fa-phone"></a>  : {{ phone.phone_id }}</div>
+                            <div class="col"><a href="#" class="fa fa-envelope"></a> : {{ a_mail.mail_id }}</div>
+                        </div>
+                        <a href="{{ facebook }}" class="fa fa-facebook"></a>
+                        <a href="{{ linkedin.linked_in }}" class="fa fa-linkedin"></a>
+                        <a href="{{ github.github_link }}" class="fa fa-github"></a>
+
+
+
+                    </div>
+                </div>
+{% endblock %}
