@@ -23,7 +23,7 @@ class Profile(models.Model):
     graduate_department = models.CharField(max_length=50, default='Software Engineering')
     photo = models.ImageField(blank=True)
     is_current = models.BooleanField(default=True)
-    is_batchCoordinator = models.BooleanField(default=False)
+
 
     def __str__(self):
         return str(self.profile_of)

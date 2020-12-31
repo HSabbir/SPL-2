@@ -26,5 +26,13 @@
         </div>
     </section>
 
+    {% if request.user.is_staff or request.user.is_batchCoordinator %}
+        {% block approval %}
+            {% for usr in not_approve %}
+                <h2>usr.name</h2> is wating for approval.<button><a href="{% url 'approve' usr.id %} ">Approve</a></button>
+            {% endfor %}
+        {% endblock %}
+    {% endif %}
+
 {% endblock %}
 

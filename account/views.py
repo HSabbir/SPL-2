@@ -19,6 +19,8 @@ from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.tokens import default_token_generator
 
+from notifications.signals import notify
+
 from .models import Account
 from .forms import RegistrationForm
 
@@ -50,11 +52,31 @@ def registrationView(request):
             )
             email.send()
             return HttpResponse('Please confirm your email address to complete the registration')
-        else:
-            form = RegistrationForm()
-        return render(request, 'registration/register.html', {'form': form})
     else:
-        return render(request, 'registration/register.html')
+        form = RegistrationForm()
+        return render(request, 'registration/register.html', {'form': form})
+    '''else:
+        return render(request, 'registration/register.html')'''
+
+
+def approve(request, id):
+    user = Account.objects.get(id = id)
+    print(user.email_confirmed, user.email)
+    user.is_active = True
+    user.save()
+    return render(request, 'index.html')
+
+def accountNotApproved():
+    not_active = Account.objects.filter(is_active=False, email_confirmed=True)
+    return not_active
+
+'''def notify(user):
+    users = Account.objects.all()
+    for usr in users:
+        if usr.is_staff or usr.is_batchCoordinator:
+            notify.send(user, recipient=usr, verb='waiting for approval')'''
+
+
 def activate(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
@@ -62,9 +84,15 @@ def activate(request, uidb64, token):
     except(TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
         user = None
     if user is not None and default_token_generator.check_token(user, token):
-        user.is_active = True
+        user.email_confirmed = True
         user.save()
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+
+        if user.email_confirmed and user.is_active == False:
+            #notify(request.user)
+            '''for usr in users:
+                if usr.is_staff or usr.is_batchCoordinator :
+                    notify.send(request.user, recipient=usr, verb='waiting for approval' )'''
+        return HttpResponse('Thank you for your email confirmation. W8 for the account approval.')
     else:
         return HttpResponse('Activation link is invalid!')
 
@@ -84,9 +112,12 @@ class RegistrationView(CreateView):
             success_url += '?next={}'.format(next_url)
 
         return success_url
+
+
 @login_required(login_url= '/accounts/login/')
 def home(request):
-    return render(request, 'index.html')
+    not_active = accountNotApproved()
+    return render(request, 'index.html', {'not_approve': not_active})
 
 
 class ProfileView(UpdateView):

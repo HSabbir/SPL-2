@@ -50,7 +50,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(default=timezone.now)
     last_login = models.DateTimeField(null=True)
     is_teacher = models.BooleanField(default=False)
-    is_approved = models.BooleanField(default=False)
+    is_batchCoordinator = models.BooleanField(default=False)
     email_confirmed = models.BooleanField(default=False)
 
     objects = AccountManager()

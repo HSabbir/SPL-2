@@ -7,5 +7,5 @@ urlpatterns=[
     path('', views.home, name='home'),
     path('register/', registrationView, name='register'),
     path('activate/<uidb64>/<token>/',views.activate, name='activate'),
-
+    path('account_approval/<id>', views.approve, name='approve'),
 ]
