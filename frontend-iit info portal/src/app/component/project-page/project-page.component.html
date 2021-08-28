@@ -1,0 +1,8 @@
+<div class="container">
+  <h1 align="center">PROJECT</h1>
+  <div  class="row">
+    <div class="col-md-3" *ngFor="let project of projects">
+      <app-single-project [project]="project" (tag)="onTag($event)"></app-single-project>
+    </div>
+  </div>
+</div>

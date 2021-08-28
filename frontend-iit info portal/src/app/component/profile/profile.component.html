@@ -1,0 +1,82 @@
+<div class="createProfile" *ngIf="!profile">
+  <p>YOU HAVE NO PROFILE!</p>
+  <button *ngIf="!profile" class="btn btn-dark btn" type="button" routerLink="/profile_create">Create Profile</button>
+</div>
+<div class="container" *ngIf="profile">
+  <app-crete-item></app-crete-item><br><br>
+  <div class="card" style="max-width: 100%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          *ngIf="profile"
+          src="{{profile.photo}}"
+          alt="..."
+          class=" rounded-circle"
+        />
+      </div>
+      <div class="col-md-4">
+        <div class="card-body">
+          <h3 class="card-title" >{{name}}</h3>
+          <div>
+            <li *ngIf="profile.is_current">Current Student</li>
+            <li *ngIf="!profile.is_current">Software Developer</li>
+            <li>{{profile.iit_program}} Batch : {{profile.batch}}</li>
+            <li>College: {{profile.college}}</li>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="contact">
+          <h3 class="card-title">Contact Information</h3>
+          <div>
+            <i class="fas fa-phone-alt" *ngIf="profile.phone"></i>{{profile.phone}}<br>
+            <i class="fas fa-envelope" ></i>{{profile.user.email}}<br>
+            <i class="fas fa-envelope" *ngIf="profile.additional_mail"></i>{{profile.additional_mail}}<br>
+            <button type="button" class="btn btn-dark btn btn-floating">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button type="button" class="btn btn-dark btn btn-floating">
+              <i class="fab fa-github"></i>
+            </button>
+            <button type="button" class="btn btn-dark btn btn-floating">
+              <i class="fab fa-linkedin-in"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="profession" *ngIf="filterProfession(profile.user.id)">
+    <h1 align="center" >Professional Information</h1>
+    <div *ngFor="let profession of filterProfession(profile.user.id)">
+      <app-profession-cards [profession]="profession"></app-profession-cards>
+    </div>
+  </div>
+  <div class="project" >
+    <h1 align="center" *ngIf="!filterProject(profile.user.id)">You Have No Project</h1>
+    <h1 align="center"  *ngIf="filterProject(profile.user.id)"> Project Information </h1>
+    <div  class="row">
+      <div class="col-md-3" *ngFor="let project of filterProject(profile.user.id)">
+        <app-single-project [project]="project"></app-single-project>
+      </div>
+    </div>
+  </div>
+  <div class="project" *ngIf="filterResearch(profile.user.id)">
+    <h1 align="center">Research Information</h1>
+    <div  class="row">
+      <div class="col-md-4" *ngFor="let research of filterResearch(profile.user.id)">
+        <app-research-card [research]="research"></app-research-card>
+      </div>
+    </div>
+  </div>
+  <div class="project" *ngIf="filterHigherStdy(profile.user.id)">
+    <h1 align="center">Higher Study Information</h1>
+    <div  class="row">
+      <div  *ngFor="let higherStudy of filterHigherStdy(profile.user.id)">
+        <app-higher-study-card [higherStudy]="higherStudy"></app-higher-study-card>
+      </div>
+    </div>
+  </div>
+</div>

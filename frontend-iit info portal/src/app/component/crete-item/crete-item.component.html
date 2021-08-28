@@ -1,0 +1,103 @@
+<div class="dropdown">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary" (click)="changeProjectToggle('P')">Add Project </button>
+    <button type="button" class="btn btn-primary" (click)="changeProjectToggle('Pr')">Add Profession</button>
+    <button type="button" class="btn btn-primary" (click)="changeProjectToggle('R')">Add Research</button>
+    <button type="button" class="btn btn-primary" (click)="changeProjectToggle('H')">Add HigherStudies</button>
+
+  </div>
+  <div class="dropdown-menu" style="width: 500px" *ngIf="toogleProject">
+    <form class="px-4 py-3" [formGroup]="formGroup">
+      <!-- Email input -->
+      <div >
+        <label class="form-label" for="form2Example3">Project Title</label>
+        <input type="text" id="form2Example3" class="form-control " placeholder="Enter Project Title" formControlName="title"/>
+      </div>
+      <br>
+      <div >
+        <label class="form-label" for="dropdownMenu1">Project Domain</label><br>
+        <select class="form-select" aria-label="Default select example" id="dropdownMenu1" formControlName="domain">
+            <option value="1">Machine Learning</option>
+            <option value="2">AI</option>
+            <option value="3">Deep Learning</option>
+        </select>
+      </div>
+      <div >
+        <label class="form-label" for="dropdownMenu2">Project Technology</label><br>
+        <select class="form-select" aria-label="Default select example" id="dropdownMenu2" formControlName="tools_and_technology">
+          <option value="1">REACT</option>
+          <option value="2">ANGULAR</option>
+          <option value="3">C#</option>
+        </select>
+      </div>
+      <div >
+        <label class="form-label" for="dropdownMenu3">Project Environment</label><br>
+        <select class="form-select" aria-label="Default select example" id="dropdownMenu3" formControlName="environment">
+          <option value="1">Android</option>
+          <option value="2">Desktop</option>
+          <option value="3">IOS</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 file">
+        <br>
+        <label for="formFileLg" class="form-label">Project Photo</label>
+        <input class="form-control form-control-lg" id="formFileLg" type="file"  (change)="onFileChange($event)"/>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary btn-block" (click)="submitProject()">Create Project</button>
+    </form>
+  </div>
+  <div class="dropdown-menu" style="width: 500px" *ngIf="toogleResearch">
+    <form class="px-4 py-3" [formGroup]="researchForm" (ngSubmit)="submitResearch()">
+      <!-- Email input -->
+      <div >
+        <label class="form-label" for="form3Example3">Research Title</label>
+        <input type="text" id="form3Example3" class="form-control " placeholder="Enter Research Title" formControlName="title"/>
+      </div>
+      <br>
+      <div >
+        <label class="form-label" for="dropdownMenu5">Research Domain</label><br>
+        <select class="form-select" aria-label="Default select example" id="dropdownMenu5" formControlName="research_domain">
+          <option value="1">Machine Learning</option>
+          <option value="2">AI</option>
+          <option value="3">Deep Learning</option>
+        </select>
+      </div><br>
+      <button type="submit" class="btn btn-primary btn-block" (click)="submitResearch()">Add Research</button>
+    </form>
+  </div>
+  <div class="dropdown-menu" style="width: 500px" *ngIf="toogleProfession">
+    <form class="px-4 py-3" [formGroup]="professionForm" (ngSubmit)="submitProfession()">
+      <!-- Email input -->
+      <div >
+        <label class="form-label" for="form4Example3">Organization Name</label>
+        <input type="text" id="form4Example3" class="form-control " placeholder="Enter organization name" formControlName="organization_name"/>
+      </div>
+      <br>
+      <div >
+        <label class="form-label" for="form4Example4">Organization Type</label>
+        <input type="text" id="form4Example4" class="form-control " placeholder="Enter type of organization" formControlName="organization_type"/>
+      </div>
+      <br>
+      <div >
+        <label class="form-label" for="form4Example5">Designation</label>
+        <input type="text" id="form4Example5" class="form-control " placeholder="designation" formControlName="designation"/>
+      </div>
+      <br>
+      <div >
+        <label class="form-label" for="form4Example6">Date Joined</label>
+        <input type="date" id="form4Example6" class="form-control " placeholder="Enter joined date" formControlName="date_join"/>
+      </div>
+      <br>
+      <div >
+        <label class="form-label" for="form4Example7">Website Url</label>
+        <input type="text" id="form4Example7" class="form-control " placeholder="Enter Website url" formControlName="url"/>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary btn-block" (click)="submitProfession()">Add Profession</button>
+    </form>
+  </div>
+</div>
+
+

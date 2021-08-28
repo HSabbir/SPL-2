@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="single-people.component.scss">
+<div class="card text-center ">
+  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+    <img src="{{people.photo}}" class="img-fluid" />
+    <a [routerLink]="['/people', people.id]">
+      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+    </a>
+  </div>
+
+  <div class="card-body">
+    <h5 class="card-title">{{people.user.name}}</h5>
+    <p class="card-text">
+      Batch : {{people.batch}}
+    </p>
+
+    <button type="button" class="btn btn-dark btn btn-floating">
+      <i class="fab fa-facebook-f"></i>
+    </button>
+    <button type="button" class="btn btn-dark btn btn-floating">
+      <i class="fab fa-github"></i>
+    </button>
+    <button type="button" class="btn btn-dark btn btn-floating">
+      <i class="fab fa-linkedin-in"></i>
+    </button>
+  </div>
+</div>
